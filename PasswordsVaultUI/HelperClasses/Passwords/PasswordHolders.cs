@@ -6,6 +6,7 @@ namespace PasswordsVaultUI.HelperClasses.Passwords
     [Serializable]
     public class PasswordHolders
     {
+        public string Username { get; private set; }
         Dictionary<string, string> _passwordEntries;
 
         public PasswordHolders()
@@ -13,9 +14,10 @@ namespace PasswordsVaultUI.HelperClasses.Passwords
             _passwordEntries = new Dictionary<string, string>();
         }
 
-        public PasswordHolders(Dictionary<string, string> passwordEntries)
+        public PasswordHolders(string username)
         {
-            _passwordEntries = passwordEntries;
+            _passwordEntries = new Dictionary<string, string>();
+            Username = username;
         }
 
         public void AddEntry(string tag, string passwordValue)

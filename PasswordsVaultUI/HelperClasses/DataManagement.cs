@@ -1,4 +1,5 @@
-﻿using PasswordsVaultUI.HelperClasses.Passwords;
+﻿using PasswordsVaultUI.HelperClasses.Exceptions;
+using PasswordsVaultUI.HelperClasses.Passwords;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,32 +16,64 @@ namespace PasswordsVaultUI.HelperClasses
         public PasswordHolders PassHolder { get; private set; }
 
         string _key;
+        static string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PasswordVault\\vault.dat");
+
+        public void EnsureDirectoryExists()
+        {
+            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PasswordVault");
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+        }
 
         public DataLoader(string key)
         {
+            EnsureDirectoryExists();
+
             _key = key;
-            var fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "vault.dat");
 
             if (File.Exists(fileName))
             {
                 var fileData = File.ReadAllText(fileName);
 
-                PassHolder = JsonSerializer.Deserialize<PasswordHolders>(
-                    EncryptionHelperClass.DecryptString(key, fileData));
+                try
+                {
+                    PassHolder = JsonSerializer.Deserialize<PasswordHolders>(
+                            EncryptionHelperClass.DecryptString(key, fileData));
+                }
+                catch
+                {
+                    throw new FailedDecryptionException("Decryption failed with given key.");
+                }
             }
             else
             {
-                PassHolder = new PasswordHolders();
+                throw new FailedLoginMissingFileException("User shouldn't be able to login without created data file.");
             }
+        }
+
+        public DataLoader(string key, string username)
+        {
+            EnsureDirectoryExists();
+
+            _key = key;
+
+            PassHolder = new PasswordHolders(username);
+
+            var fileData = EncryptionHelperClass.EncryptString(_key, JsonSerializer.Serialize(PassHolder));
+
+            File.WriteAllText(fileName, fileData);
         }
 
         public void SaveData()
         {
-            var fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "vault.dat");
-
-            var fileData = EncryptionHelperClass.EncryptString(_key, JsonSerializer.Serialize(_passHolder));
+            var fileData = EncryptionHelperClass.EncryptString(_key, JsonSerializer.Serialize(PassHolder));
 
             File.WriteAllText(fileName, fileData);
+        }
+
+        public static bool CheckIfUserSet()
+        {
+            return File.Exists(fileName);
         }
     }
 }

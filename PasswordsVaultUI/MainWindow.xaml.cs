@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PasswordsVaultUI.HelperClasses;
 
 namespace PasswordsVaultUI
 {
@@ -20,11 +21,23 @@ namespace PasswordsVaultUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataLoader _dataLoader;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            Main.Content = new LoginScreen();
+            Main.Content = new LoginScreen().SetMainWindow(this);
+        }
+
+        public void SetDataLoader(DataLoader newDataLoader)
+        {
+            _dataLoader = newDataLoader;
+        }
+
+        public void ChangeToMainScreen()
+        {
+            Main.Content = new MainScreen();
         }
     }
 }
