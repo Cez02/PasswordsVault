@@ -42,9 +42,5 @@ namespace PasswordsVaultUI.HelperClasses
 
             File.WriteAllText(fileName, fileData);
         }
-
-
-    
-
     }
 }
