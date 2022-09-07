@@ -9,56 +9,8 @@
     <Grid>
         <Frame x:Name="Main" />
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
-
-        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="26"
-                   Text="Cez02's password vault" Grid.ColumnSpan="3"
-                   Margin="20 0 0 20"/>
-
-        <TextBlock Grid.Column="1" Grid.Row="2" FontSize="14"
-                   Text="Choose application" Grid.ColumnSpan="3"
-                   Margin="0 0 0 5"/>
         
-        <ComboBox x:Name="ApplicationsDD" Grid.Column="1" Grid.Row="3"
-                  Width="auto" Height="auto"/>
 
-        <!-- Application options-->
-
-        <Canvas Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3"
-                Margin="20 0 0 0"
-                Width="auto" Height="auto">
-            <Canvas.Effect>
-                <DropShadowEffect/>
-            </Canvas.Effect>
-
-            <Canvas.Background>
-                <SolidColorBrush Color="#FFBDFAFF">
-                
-                </SolidColorBrush>
-            </Canvas.Background>
-
-            <TextBlock Text="Test application options" FontSize="24" />
-            
-            
-
-        </Canvas>
 
     </Grid>
 </Window>
