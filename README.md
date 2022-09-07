@@ -8,7 +8,7 @@ Prior to this app I stored all my passwords in a very secret location in a text 
 
 ## Any plans on expanding?
 
-None at the moment. Maybe a day will come when I work on the front-end. I am also not totally into cybersecurity, so there's a chance my app the least safe password vault out there (although I doubt it).
+None at the moment. Maybe a day will come when I work on the front-end. I am also not totally into cybersecurity, so there's a chance my app is the least safe password vault out there (although I doubt it).
 
 ## Builds
 
