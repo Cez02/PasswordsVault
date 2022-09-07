@@ -23,6 +23,8 @@ namespace PasswordsVaultUI
         public MainWindow()
         {
             InitializeComponent();
+
+            Main.Content = new LoginScreen();
         }
     }
 }

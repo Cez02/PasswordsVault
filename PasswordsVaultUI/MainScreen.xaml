@@ -9,6 +9,73 @@
       Title="MainScreen">
 
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
         
+        <StackPanel Grid.Column="1" Grid.Row="1"
+                    Background="#a6ffbc">
+            <StackPanel.Effect>
+                <DropShadowEffect/>
+            </StackPanel.Effect>
+
+            <TextBlock Text="Password Vault"
+                   Grid.Column="1" Margin="20 20 20 20"
+                   FontSize="23"/>
+            <TextBlock Text="Select password holder"
+                   HorizontalAlignment="Center"
+                   Grid.Column="1" Padding="0 20 0 20"
+                   FontSize="15"/>
+            <ComboBox x:Name="EntryTags"
+                      Width="100" Height="20" />
+            <Button x:Name="createNewPassHolderButton"
+                   HorizontalAlignment="Center"
+                   Grid.Column="1" Margin="0 100 0 20"
+                   Width="150" Height="45" >
+                <TextBlock TextAlignment="Center">Create a new<LineBreak/>password holder</TextBlock>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="1"
+                    Background="#a6ffbc">
+            <StackPanel.Effect>
+                <DropShadowEffect/>
+            </StackPanel.Effect>
+
+            <TextBlock x:Name="passwordHolderText" 
+                       Text="Password information for APP NAME PLACEHOLDER"
+                       Margin="20 20 20 20"
+                       FontSize="23"/>
+
+            <TextBox x:Name="passwordField" 
+                     Margin="20 0 20 20"
+                     Height="70"/>
+
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Height="30">
+                <Button x:Name="getPasswordButton"
+                   Margin="20 0 20 0"
+                   Content="Get password" />
+
+                <Button x:Name="setPasswordButton"
+                   Margin="20 0 20 0"
+                   Content="Set new password" />
+            </StackPanel>
+               
+
+        </StackPanel>
+
     </Grid>
 </Page>
