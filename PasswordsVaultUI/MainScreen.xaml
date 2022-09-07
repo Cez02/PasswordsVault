@@ -72,6 +72,10 @@
                 <Button x:Name="setPasswordButton"
                    Margin="20 0 20 0"
                    Content="Set new password" />
+                
+                <Button x:Name="removeTagButton"
+                   Margin="20 0 20 0"
+                   Content="Remove tag" />
             </StackPanel>
                
 
