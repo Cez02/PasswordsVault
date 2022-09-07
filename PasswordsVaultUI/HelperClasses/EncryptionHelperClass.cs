@@ -23,7 +23,15 @@ namespace PasswordsVaultUI.HelperClasses
             }
             else if(key.Length > 32)
             {
-                return key.Substring(0, 32);
+                StringBuilder sb = new StringBuilder();
+
+                int increment = key.Length / 32;
+                for(int i = 0; i<32; i++)
+                {
+                    sb.Append(key[i * increment]);
+                }
+
+                return sb.ToString();
             }
 
             return key;

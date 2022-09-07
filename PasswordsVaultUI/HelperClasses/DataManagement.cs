@@ -41,8 +41,6 @@ namespace PasswordsVaultUI.HelperClasses
 
                     PassHolder = JsonConvert.DeserializeObject<PasswordHolders>(decrypted);
 
-                    Console.WriteLine($"Checking: {PassHolder.GetTags().Length}");
-
                     PassHolder.EnsureDictionaryNotNull();
                 }
                 catch
@@ -70,9 +68,6 @@ namespace PasswordsVaultUI.HelperClasses
         public void SaveData()
         {
             var fileData = EncryptionHelperClass.EncryptString(_key, JsonConvert.SerializeObject(PassHolder));
-            //fileData = JsonSerializer.Serialize(PassHolder);
-            var fileDataTest = JsonConvert.SerializeObject(PassHolder);
-            File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PasswordVault\\vault2.dat"), fileDataTest);
             File.WriteAllText(fileName, fileData);
         }
 
