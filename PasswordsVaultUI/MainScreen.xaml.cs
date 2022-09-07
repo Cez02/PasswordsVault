@@ -20,9 +20,74 @@ namespace PasswordsVaultUI
     /// </summary>
     public partial class MainScreen : Page
     {
+        MainWindow _mainWindow;
+        int oldEntryTagsIndex = -1;
+
         public MainScreen()
         {
             InitializeComponent();
+        }
+
+        public MainScreen SetupPasswordHolders()
+        {
+            var holderTags = _mainWindow.GetHolderTags();
+            foreach (var v in holderTags)
+                entryTags.Items.Add(v);
+            entryTags.SelectedIndex = 0;
+
+            return this;
+        }
+
+        public MainScreen SetMainWindow(MainWindow mainWindow) { 
+            _mainWindow = mainWindow;
+            return this;
+        }
+
+        public void AddNewHolder(string name)
+        {
+            entryTags.Items.Add(name);
+            _mainWindow.dataLoader.PassHolder.AddEntry(name, "");
+            entryTags.SelectedIndex = entryTags.Items.Count - 1;
+        }
+
+        private void createNewPassHolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newPrompt = new NewPasswordHolderPrompt().SetMainScreen(this);
+            newPrompt.Show();
+            IsEnabled = false;
+        }
+
+
+
+        private void SelectionChangedEntryTags(object sender, SelectionChangedEventArgs e)
+        {
+            if (oldEntryTagsIndex != entryTags.SelectedIndex)
+            {
+                nullEntryBlocker.Visibility = Visibility.Hidden;
+                passwordHolderText.Text = $"Password information for {entryTags.SelectedValue}";
+                passwordField.Text = "";
+                oldEntryTagsIndex = entryTags.SelectedIndex;
+            }
+        }
+
+        private void GetPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            passwordField.Text = _mainWindow.dataLoader.PassHolder.GetPassword(entryTags.SelectedValue.ToString());
+        }
+
+        private void SetNewPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.dataLoader.PassHolder.ChangeEntry(entryTags.SelectedValue.ToString(), passwordField.Text);
+            _mainWindow.dataLoader.SaveData();
+        }
+
+        private void RemoveTagButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.dataLoader.PassHolder.RemoveEntry(entryTags.SelectedValue.ToString());
+            entryTags.Items.Remove(entryTags.SelectedValue);
+            nullEntryBlocker.Visibility = Visibility.Visible;
+            oldEntryTagsIndex = -1;
+            _mainWindow.dataLoader.SaveData();
         }
     }
 }

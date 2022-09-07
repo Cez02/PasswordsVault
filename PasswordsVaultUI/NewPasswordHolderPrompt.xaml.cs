@@ -15,39 +15,39 @@ using System.Windows.Shapes;
 namespace PasswordsVaultUI
 {
     /// <summary>
-    /// Interaction logic for NewUserPrompt.xaml
+    /// Interaction logic for NewPasswordHolderPrompt.xaml
     /// </summary>
-    public partial class NewUserPrompt : Window
+    public partial class NewPasswordHolderPrompt : Window
     {
-        private LoginScreen _loginScreen;
+        MainScreen _mainScreen;
 
-        public NewUserPrompt()
+        public NewPasswordHolderPrompt()
         {
             InitializeComponent();
         }
 
-        public NewUserPrompt SetLoginScreen(LoginScreen loginScreen)
+        public NewPasswordHolderPrompt SetMainScreen(MainScreen mainScreen)
         {
-            _loginScreen = loginScreen;
+            _mainScreen = mainScreen;
             return this;
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            _loginScreen.IsEnabled = true;
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            _loginScreen.IsEnabled = true;
+            _mainScreen.IsEnabled = true;
+            _mainScreen.AddNewHolder(newHolderName.Text);
             Close();
-            _loginScreen.CreateNewUser(newUsername.Text, newMasterkey.Password);
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            _loginScreen.IsEnabled = true;
+            _mainScreen.IsEnabled = true;
             Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _mainScreen.IsEnabled = true;
         }
     }
 }

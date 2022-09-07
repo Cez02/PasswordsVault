@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace PasswordsVaultUI.HelperClasses
@@ -37,8 +37,13 @@ namespace PasswordsVaultUI.HelperClasses
 
                 try
                 {
-                    PassHolder = JsonSerializer.Deserialize<PasswordHolders>(
-                            EncryptionHelperClass.DecryptString(key, fileData));
+                    var decrypted = EncryptionHelperClass.DecryptString(key, fileData);
+
+                    PassHolder = JsonConvert.DeserializeObject<PasswordHolders>(decrypted);
+
+                    Console.WriteLine($"Checking: {PassHolder.GetTags().Length}");
+
+                    PassHolder.EnsureDictionaryNotNull();
                 }
                 catch
                 {
@@ -59,15 +64,15 @@ namespace PasswordsVaultUI.HelperClasses
 
             PassHolder = new PasswordHolders(username);
 
-            var fileData = EncryptionHelperClass.EncryptString(_key, JsonSerializer.Serialize(PassHolder));
-
-            File.WriteAllText(fileName, fileData);
+            SaveData();
         }
 
         public void SaveData()
         {
-            var fileData = EncryptionHelperClass.EncryptString(_key, JsonSerializer.Serialize(PassHolder));
-
+            var fileData = EncryptionHelperClass.EncryptString(_key, JsonConvert.SerializeObject(PassHolder));
+            //fileData = JsonSerializer.Serialize(PassHolder);
+            var fileDataTest = JsonConvert.SerializeObject(PassHolder);
+            File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PasswordVault\\vault2.dat"), fileDataTest);
             File.WriteAllText(fileName, fileData);
         }
 

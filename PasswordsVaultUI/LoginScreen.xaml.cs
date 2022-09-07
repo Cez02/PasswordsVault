@@ -39,7 +39,7 @@ namespace PasswordsVaultUI
         {
             try
             {
-                var dataLoader = new DataLoader(MasterKey.Text);
+                var dataLoader = new DataLoader(MasterKey.Password);
 
                 _mainWindow.SetDataLoader(dataLoader);
                 _mainWindow.ChangeToMainScreen();

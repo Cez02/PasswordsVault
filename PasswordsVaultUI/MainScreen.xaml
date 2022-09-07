@@ -37,12 +37,12 @@
                    HorizontalAlignment="Center"
                    Grid.Column="1" Padding="0 20 0 20"
                    FontSize="15"/>
-            <ComboBox x:Name="EntryTags"
-                      Width="100" Height="20" />
+            <ComboBox x:Name="entryTags"
+                      Width="100" Height="20" SelectionChanged="SelectionChangedEntryTags" />
             <Button x:Name="createNewPassHolderButton"
                    HorizontalAlignment="Center"
                    Grid.Column="1" Margin="0 100 0 20"
-                   Width="150" Height="45" >
+                   Width="150" Height="45" Click="createNewPassHolderButton_Click" >
                 <TextBlock TextAlignment="Center">Create a new<LineBreak/>password holder</TextBlock>
             </Button>
         </StackPanel>
@@ -67,17 +67,33 @@
                         Height="30">
                 <Button x:Name="getPasswordButton"
                    Margin="20 0 20 0"
-                   Content="Get password" />
+                   Content="Get password" Click="GetPasswordButton_Click" />
 
                 <Button x:Name="setPasswordButton"
                    Margin="20 0 20 0"
-                   Content="Set new password" />
+                   Content="Set new password" Click="SetNewPasswordButton_Click" />
                 
                 <Button x:Name="removeTagButton"
                    Margin="20 0 20 0"
-                   Content="Remove tag" />
+                   Content="Remove tag" Click="RemoveTagButton_Click" />
             </StackPanel>
                
+
+        </StackPanel>
+
+        <StackPanel x:Name="nullEntryBlocker"
+            Grid.Column="3" Grid.Row="1"        
+            Background="#a6ffbc" Visibility="Visible">
+            <StackPanel.Effect>
+                <DropShadowEffect/>
+            </StackPanel.Effect>
+
+            <TextBlock HorizontalAlignment="Center"
+                       Text="Select a password holder or create a new one."
+                       Margin="20 20 20 20"
+                       FontSize="23"/>
+
+         
 
         </StackPanel>
 

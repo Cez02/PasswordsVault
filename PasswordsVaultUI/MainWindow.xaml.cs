@@ -21,7 +21,7 @@ namespace PasswordsVaultUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        DataLoader _dataLoader;
+        public DataLoader dataLoader { get; private set; }
 
         public MainWindow()
         {
@@ -32,12 +32,23 @@ namespace PasswordsVaultUI
 
         public void SetDataLoader(DataLoader newDataLoader)
         {
-            _dataLoader = newDataLoader;
+            dataLoader = newDataLoader;
         }
+
+        public string[] GetHolderTags() => dataLoader.PassHolder.GetTags();
 
         public void ChangeToMainScreen()
         {
-            Main.Content = new MainScreen();
+            Main.Content = new MainScreen().SetMainWindow(this).SetupPasswordHolders();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (dataLoader != null)
+            {
+                //Console.WriteLine("Saving");
+                //dataLoader.SaveData();
+            }
         }
     }
 }
