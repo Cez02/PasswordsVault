@@ -10,7 +10,6 @@ Prior to this app I stored all my passwords in a very secret location in a text 
 
 None at the moment. Maybe a day will come when I work on the front-end. I am also not totally into cybersecurity, so there's a chance my app is the least safe password vault out there (although I doubt it).
 
-## Builds
+## Usage
 
-[Here](https://drive.google.com/file/d/1RxUshh4dcRtH33xCuFmwe1MPPsgrH60D/view?usp=sharing) should be the latest build (unless I forgot to upload the latest one).
-
+To use the program simple build or download a release, plop it into some folder anywhere on your PC and launch it. I like to hook it up to my start menu or toolbar (or both), whatever you desire.
