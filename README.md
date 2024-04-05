@@ -12,4 +12,4 @@ None at the moment. Maybe a day will come when I work on the front-end. I am als
 
 ## Usage
 
-To use the program simple build or download a release, plop it into some folder anywhere on your PC and launch it. I like to hook it up to my start menu or toolbar (or both), whatever you desire.
+To use the program simply build or download a release, plop it into some folder anywhere on your PC and launch it. I like to hook it up to my start menu or toolbar (or both), whatever you desire.
