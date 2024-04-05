@@ -61,6 +61,12 @@ namespace PasswordsVaultUI
 
         private void SelectionChangedEntryTags(object sender, SelectionChangedEventArgs e)
         {
+            if(entryTags.SelectedValue == null)
+            {
+                nullEntryBlocker.Visibility = Visibility.Visible;
+                oldEntryTagsIndex = -1;
+                return;
+            }
             if (oldEntryTagsIndex != entryTags.SelectedIndex)
             {
                 nullEntryBlocker.Visibility = Visibility.Hidden;

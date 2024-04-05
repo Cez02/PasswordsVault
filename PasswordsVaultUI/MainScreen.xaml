@@ -38,7 +38,10 @@
                    Grid.Column="1" Padding="0 20 0 20"
                    FontSize="15"/>
             <ComboBox x:Name="entryTags"
-                      Width="100" Height="20" SelectionChanged="SelectionChangedEntryTags" />
+                      Width="100" Height="20" SelectionChanged="SelectionChangedEntryTags"
+                      IsEditable="True"
+                      IsTextSearchEnabled="True"
+                      />
             <Button x:Name="createNewPassHolderButton"
                    HorizontalAlignment="Center"
                    Grid.Column="1" Margin="0 100 0 20"

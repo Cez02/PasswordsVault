@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordsVaultUI"
         Closing="Window_Closing"
+        Icon="Icon.ico"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Cez02's password vault" Height="450" Width="800">
     <Grid>
         <Frame x:Name="Main" NavigationUIVisibility="Hidden"/>
 

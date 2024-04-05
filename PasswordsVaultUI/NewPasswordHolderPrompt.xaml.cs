@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordsVaultUI.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,11 @@ namespace PasswordsVaultUI
         public NewPasswordHolderPrompt()
         {
             InitializeComponent();
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            IconHelper.RemoveIcon(this);
         }
 
         public NewPasswordHolderPrompt SetMainScreen(MainScreen mainScreen)

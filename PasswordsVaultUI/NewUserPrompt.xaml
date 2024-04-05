@@ -9,6 +9,7 @@
         MinWidth="300"
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
+        
         Title="Enter data for new user">
     <Grid Margin="10">
         <Grid.Resources>

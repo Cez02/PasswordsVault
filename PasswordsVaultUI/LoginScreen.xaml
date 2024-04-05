@@ -42,7 +42,8 @@
                     Content="Log in" 
                     Grid.Column="1" Grid.Row="2" 
                     Width="80" Height="20" 
-                    Margin="0 0 0 20" Click="LoginButtonClick"/>
+                    Margin="0 0 0 20" Click="LoginButtonClick"
+                    IsDefault="True"/>
             <Button x:Name="NewUserButton"
                     Content="Reset user data" 
                     Grid.Column="1" Grid.Row="2" 
